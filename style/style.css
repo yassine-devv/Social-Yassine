@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+}
+
+.main-post {
+    width: 40%;
+    /*height: 100vh;*/
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    /*margin-left: auto;
+    margin-right: auto;*/
+}
+
+.banner-bottom-mobile{
+    display: none;
+}
+
+.all-banner-posts {
+    display: flex;
+    justify-content: center;
+}
+
+.all-banner-posts .banner-right {
+    padding: 10px;
+    width: 20%;
+    display: grid;
+    margin-left: 10%;
+    position: fixed; 
+    top:0px; 
+    left: 0%; 
+    z-index:1;
+}
+
+.all-banner-posts .banner-right .title-name{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.post{
+    padding: 20px; 
+    border-top: 1px solid black;
+}
+.post #link-user-page{
+    text-decoration: none;
+}
+
+.main-post .post .date-post{
+    float: right;
+}
+
+.create-post-home{
+    padding: 20px;
+    padding-bottom: 10%;
+}
+/*
+.main-post .create-post-home #username-create-post{
+    margin-bottom: 5px;
+}
+*/
+.main-post .create-post-home .form-create-post-home .btn-primary{
+    float: right;
+}
+
+.all-banner-posts .banner-right .link{
+    text-decoration: none;
+    font-size: larger;
+    /*font-weight: bold;*/
+    color: black;
+    padding: 5px;
+}
+.all-banner-posts .banner-right .link span{
+    margin-left: 5px;
+}
+
+.all-banner-posts .banner-right .link:hover{
+    background-color: rgb(238, 230, 230);
+    border-radius: 7px;
+}
+
+.img-profile {
+    width: 50px;
+    height: 50px;
+}
+
+@media screen and (max-width: 1296px) {
+    .all-banner-posts .banner-right .title-name{
+        font-size: 28px;
+        font-weight: bold;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .all-banner-posts .banner-right .title-name{
+        font-size: 20px;
+    }
+
+    .all-banner-posts .banner-right .link svg{
+        width: 19px;
+        height: 19px;
+    }
+    .all-banner-posts .banner-right .link span{
+        font-size: medium;
+    }
+    
+    .img-profile {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .all-banner-posts .banner-right .title-name{
+        font-size: 17px;
+    }
+    
+    .main-post {
+        width: 50%;
+        font-size: 14px;
+    }
+    
+    .all-banner-posts .banner-right {
+        margin-left: 5%;
+    }
+    
+    #form-newpost-home{
+        padding: 10px;
+        font-size: 14px;
+    }
+    #form-newpost-home button{
+        font-size: 14px;
+    }
+    
+    #form-newpost-home input::placeholder{
+        font-size: 14px;
+    }
+}
+
+
+@media screen and (max-width: 426px) {
+    .all-banner-posts .banner-right{
+        display: none;
+    }
+
+    .all-banner-posts {
+        display: block;
+        justify-content: center;
+    }
+
+    .main-post {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .banner-bottom-mobile{
+        border: 1px solid black;
+        padding: 10px;
+        display: flex;
+        background-color: rgb(237, 230, 230);
+
+
+        position: fixed;
+        bottom:0px;
+        left: 0px;
+        right: 0px;
+        z-index:1;
+        
+    }
+    .banner-bottom-mobile a{
+        color: black;
+        margin: 3px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
