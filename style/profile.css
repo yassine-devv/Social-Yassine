@@ -85,7 +85,9 @@
     left: 0%; 
     bottom: 0px;
     z-index:1;
+    box-sizing: content-box;
 }
+
 .sec-profile-view-settings .nav-right .links-profile{
     display: block;
     margin-top: 30%;
@@ -144,6 +146,7 @@
 
 .sec-profile-view-settings .view-settings .line{
     margin-top: 2%;
+    color: grey;
 }
 
 .sec-profile-view-settings .view-settings .pic-fullname{
@@ -155,3 +158,106 @@
     width: 75px;
     height: 75px;
 }
+
+.img-txt-prof{
+    display: flex;
+}
+
+.img-txt-prof .col{
+    padding-left: 2%;
+    align-content: center;
+}
+
+.btn-mod-pic{
+    box-sizing: border-box;
+    align-content: center;
+}
+
+/* CSS */
+.button-13 {
+  background-color: #fff;
+  border: 1px solid #d5d9d9;
+  border-radius: 8px;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  box-sizing: border-box;
+  color: #0f1111;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",sans-serif;
+  font-size: 13px;
+  line-height: 29px;
+  padding: 2px 12px 2px 12px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-13:hover {
+  background-color: #f7fafa;
+}
+
+.button-13:focus {
+  border-color: #008296;
+  box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+  outline: 0;
+}
+
+/* CSS */
+.button-2 {
+  background-color: rgba(51, 51, 51, 0.05);
+  border-radius: 8px;
+  border-width: 0;
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Amazon Ember",sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 6px 10px 6px 12px;
+  text-align: center;
+  transition: all 200ms;
+  vertical-align: baseline;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.pic-fullname .fullname{
+    margin-top: 5%;
+}
+
+.pic-fullname .fullname .col{
+    display: grid;
+    font-size: 16px;
+}
+.pic-fullname .fullname label{
+    color: gray;
+}
+
+.pic-fullname .fullname .col input{
+    width: 100%;
+    margin-top: 2%;
+    border-radius: 10px;
+    padding: 7px;
+    border: 1px solid gray;
+    outline: none;
+}
+
+.imp-img {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }

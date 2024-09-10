@@ -88,4 +88,8 @@ function request_data_profile($id){
     return $data;
 }
 
+if(isset($_POST['mod-file'])){
+    var_dump($_POST['mod-file']);
+}
+
 ?>

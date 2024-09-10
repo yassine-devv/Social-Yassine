@@ -6,33 +6,33 @@ function azioni(tipoazione, idpost) {
     if (this.readyState == 4 && this.status == 200) {
       console.log(this.response);
       console.log(idpost);
-      
+
       let post = document.getElementById(idpost);
       console.log(post);
-      
+
       console.log("#" + idpost + " .btns .btnSave");
-      
+
       let divbtns = document.querySelector("#" + idpost + " .btns");
-      
+
       let btn = null;
       let spannlikes = null;
-      
+
       if (tipoazione == "like") {
         btn = document.querySelector("#" + idpost + " .btns .btnSave");
       } else {
         spannlikes = document.querySelector("#" + idpost + " .btns .nlikes");
         btn = document.querySelector("#" + idpost + " .btns .btnlike");
       }
-      
+
       console.log(btn);
-      
+
       if (tipoazione == "like") {
         console.log(btn);
-        
+
         divbtns.innerHTML = this.responseText;
         divbtns.appendChild(btn);
-      }else{
-   
+      } else {
+
 
         while (divbtns.firstChild) {
           divbtns.removeChild(divbtns.lastChild);
@@ -43,7 +43,7 @@ function azioni(tipoazione, idpost) {
         //divbtns.innerHTML = btnlike;
         //divbtns.innerHTML += likes;
         divbtns.innerHTML += this.response;
-        
+
       }
 
     }
@@ -53,7 +53,7 @@ function azioni(tipoazione, idpost) {
 }
 
 
-function view(post){
+function view(post) {
   console.log(post);
   var xmlhttp = new XMLHttpRequest();
   xmlhttp.onreadystatechange = function () {
@@ -61,10 +61,10 @@ function view(post){
       console.log(this.response);
 
       let divbody = document.querySelector(".sec-view .view-body");
-      
+
       document.querySelector(".sec-view .sec-labels button").style.border = "none";
-      
-      switch(post){
+
+      switch (post) {
         case "post-pubb":
           document.querySelector(".sec-view .sec-labels button").style.border = "none";
           document.querySelector(".sec-view .sec-labels button").style.borderBottom = "none";
@@ -94,10 +94,22 @@ let path = window.location.pathname;
 console.log(path);
 
 
-if(path=="/social_yassine/profile.php"){
+if (path == "/social_yassine/profile.php") {
   window.onload = view("post-pubb");
 }
 
-function showmsg(str){
+function showmsg(str) {
   alert(str);
+}
+
+function mod_img() {
+  let input = document.createElement('input');
+  input.type = 'file';
+  input.name = "mod-file";
+  input.onchange = _ => {
+    // you can use this method to get file and perform respective operations
+    let files = Array.from(input.files);
+    console.log(files);
+  };
+  input.click();
 }

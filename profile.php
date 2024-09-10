@@ -13,7 +13,7 @@ if (!isset($_GET['page'])) {
 
 $data = request_data_profile($_SESSION['iduser']);
 
-
+$extimg = array("png", "jpg", "jpeg");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     //echo $data["username"];
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $target_file = $target_dir . basename($_FILES["new-img"]["name"]);
         $uploadOk = true;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $imgname =  $_SESSION['iduser'] . "." . $imageFileType;
+        $imgname = $_SESSION['iduser'] . "." . $imageFileType;
 
         $check = getimagesize($_FILES["new-img"]["tmp_name"]);
 
@@ -47,8 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             echo "File is not an image.";
             $uploadOk = false;
         }
-
-        $extimg = array("png", "jpg", "jpeg");
 
         if (!in_array($imageFileType, $extimg)) {
             $uploadOk = false;
@@ -71,9 +69,9 @@ $data = request_data_profile($_SESSION['iduser']);
 
 $pagesget = [
     "user_data" => [
-        "label" => "Dati personali", 
+        "label" => "Dati personali",
         "icon" => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" /></svg>'
-        ],
+    ],
     "post_pubb" => [
         "label" => "Post pubblicati",
         "icon" => '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-grid-3x3" viewBox="0 0 16 16"><path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5zM1.5 1a.5.5 0 0 0-.5.5V5h4V1zM5 6H1v4h4zm1 4h4V6H6zm-1 1H1v3.5a.5.5 0 0 0 .5.5H5zm1 0v4h4v-4zm5 0v4h3.5a.5.5 0 0 0 .5-.5V11zm0-1h4V6h-4zm0-5h4V1.5a.5.5 0 0 0-.5-.5H11zm-1 0V1H6v4z" /></svg>'
@@ -97,7 +95,11 @@ $pagesget = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profilo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/profile.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+    </script>
 </head>
 
 <body>
@@ -110,18 +112,18 @@ $pagesget = [
             </b>
 
             <div class="links-profile">
-                <?php 
-                    foreach($pagesget as $key => $value){
-                        $link = "<div>";
-                        $link .= $value['icon'];
-                        if($_GET['page'] == $key){
-                            $link .= '<a class="active" href="profile.php?page=' . $key . '">' . $value['label'] . '</a>';
-                        }else{
-                            $link .= '<a href="profile.php?page=' . $key . '">' . $value['label'] . '</a>';
-                        }
-                        $link .= "</div>";
-                        echo $link;
+                <?php
+                foreach ($pagesget as $key => $value) {
+                    $link = "<div>";
+                    $link .= $value['icon'];
+                    if ($_GET['page'] == $key) {
+                        $link .= '<a class="active" href="profile.php?page=' . $key . '">' . $value['label'] . '</a>';
+                    } else {
+                        $link .= '<a href="profile.php?page=' . $key . '">' . $value['label'] . '</a>';
                     }
+                    $link .= "</div>";
+                    echo $link;
+                }
                 ?>
             </div>
 
@@ -140,14 +142,47 @@ $pagesget = [
 
                     <hr class="line">
 
-                    <div class="pic-fullname">
-                        <div class="col-8">
-                            <img src='<?= "." . $data["image_path"] ?>' class="img-profile">    
-                            <span>Immagine profilo</span>
-                        </div>
-                    <?php  ?>
-                    </div>
+                    <div class="container pic-fullname">
 
+                        <div class="row">
+
+                            <div class="col-8 img-txt-prof">
+                                <img src='<?= "." . $data["image_path"] ?>' class="img-profile">
+
+
+                                <div class="col">
+                                    <span>Immagine profilo</span><br>
+                                    <span
+                                        style="margin-top: 60px; font-size: medium; color: grey"><?= strtoupper(implode(', ', $extimg)) . " sotto 15MB" ?></span>
+                                </div>
+                            </div>
+
+                            <div class="col-4 btn-mod-pic">
+                                <form name="frm" action="a3 - Copy.php" method="post" enctype="multipart/form-data">
+                                    <input type="submit" name="submitFile" style="display:none" id="submit">
+                                    <input type="file" id="upfile" name="uploadFile" onchange="document.getElementById('submit').click()">
+                                </form>
+
+                                <button class="button-2" role="button">Elimina</button>
+                            </div>
+
+                        </div>
+
+                        <div class="row fullname">
+                            <div class="col">
+                                <label>Nome</label>
+                                <input type="text">
+                            </div>
+                            <div class="col">
+                                <label>Cognome</label>
+                                <input type="text">
+                            </div>
+                        </div>
+
+                        <hr class="line">
+
+                        <?php ?>
+                    </div>
                     <?php
                     break;
                 case "post_pubb":
@@ -232,6 +267,10 @@ $pagesget = [
 
 
     <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
